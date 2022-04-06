@@ -26,7 +26,8 @@
 <html>
   <head>
     <title>All Data Page</title>
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+         crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -137,7 +138,7 @@
                                 <label class="btn btn-primary">
                                     <input type="radio" name="filter" value="wardNumber" <?php echo ($filter == 'wardNumber') ? "checked" : ""; ?>> Ward
                                 </label>
-                                    <a href="./export" target="_top" ><button type="button" class="btn btn-success">Export</button></a>
+                                    <a href="./export.php" target="_top" ><button type="button" class="btn btn-success">Export</button></a>
                             </div>	
                             <div class="search-box form-group" id="search-box">
                                 <div class="input-group">								
@@ -159,20 +160,25 @@
                     <tr>
                         <th class='text '>#</th>
                         <th class='text '>Vidhan Sabha</th>
-                        <th class='text '>Full Name</th>
+                        <th class='number '>Ward Number</th>
+                        <th class='text '>Nagar Palika /Nagar Nigam</th>
+                        <th class='number '>Booth Number</th>
+                        <th class='text '>Booth Name</th>
+                        <th class='text '>Religion</th>
+                        <th class='text '>Name</th>
+                        <th class='text '>Surname</th>
+                        <th class='text '>Caste</th>
+                        <th class='text '>Sub Caste</th>
                         <th class='text '>Father / Husband Name</th>
+                        <th class='text '>Gender</th>
                         <th class='number '>Age</th>
                         <th class='number '>Aadhar</th>
-                        <th class='number '>Booth Number</th>
                         <th class='number '>Voter Number</th>
                         <th class='text '>Address</th>
                         <th class='text '>City</th>
                         <th class='text '>District</th>
-                        <th class='text '>Caste</th>
-                        <th class='text '>Sub Caste</th>
                         <th class='number '>Mobile Number</th>
                         <th class='text '>Occupation</th>
-                        <th class='number '>Ward Number</th>
                         <th class='text '>Remark 1</th>
                         <th class='text '>Remark 2</th>
                         <th class='text '>Remark 3</th>
@@ -187,25 +193,30 @@
                     <tr data-filter="active">
                         <td class='text ' data-title='id'><?php echo $cnt; ?></td>
                         <td class='text ' data-title='vidhanSabha'><?php echo $row['vidhanSabha'] ; ?></td>
-                        <td class='text ' data-title='fullName'><?php echo $row['fullName'] ; ?></td>
+                        <td class='number ' data-title='wardNumber'><?php echo $row['wardNumber'] ; ?></td>
+                        <td class='number ' data-title='nagarPalika'><?php echo $row['nagarPalika'] ; ?></td>
+                        <td class='number ' data-title='boothNumber'><?php echo $row['boothNumber'] ; ?></td>
+                        <td class='number ' data-title='boothName'><?php echo $row['boothName'] ; ?></td>
+                        <td class='number ' data-title='religion'><?php echo $row['religion'] ; ?></td>
+                        <td class='text ' data-title='name'><?php echo $row['name'] ; ?></td>
+                        <td class='text ' data-title='surname'><?php echo $row['surname'] ; ?></td>
+                        <td class='text ' data-title='caste'><?php echo $row['caste'] ; ?></td>
+                        <td class='text ' data-title='subcaste'><?php echo $row['subcaste'] ; ?></td>
                         <td class='text ' data-title='fhName'><?php echo $row['fhName'] ; ?></td>
+                        <td class='text ' data-title='gender'><?php echo $row['gender'] ; ?></td>
                         <td class='number ' data-title='age'><?php echo $row['age'] ; ?></td>
                         <td class='number ' data-title='aadhar'><?php echo $row['aadhar'] ; ?></td>
-                        <td class='number ' data-title='boothNumber'><?php echo $row['boothNumber'] ; ?></td>
                         <td class='number ' data-title='voterNumber'><?php echo $row['voterNumber'] ; ?></td>
                         <td class='text ' data-title='address'><?php echo $row['address'] ; ?></td>
                         <td class='text ' data-title='city'><?php echo $row['city'] ; ?></td>
                         <td class='text ' data-title='district'><?php echo $row['district'] ; ?></td>
-                        <td class='text ' data-title='caste'><?php echo $row['caste'] ; ?></td>
-                        <td class='text ' data-title='subcaste'><?php echo $row['subcaste'] ; ?></td>
                         <td class='number ' data-title='mobileNumber'><?php echo $row['mobileNumber'] ; ?></td>
                         <td class='text ' data-title='occupation'><?php echo $row['occupation'] ; ?></td>
-                        <td class='number ' data-title='wardNumber'><?php echo $row['wardNumber'] ; ?></td>
                         <td class='text ' data-title='remark1'><?php echo $row['remark1'] ; ?></td>
                         <td class='text ' data-title='remark2'><?php echo $row['remark2'] ; ?></td>
                         <td class='text ' data-title='remark3'><?php echo $row['remark3'] ; ?></td>
                         <td class='text ' data-title='other'><?php echo $row['other'] ; ?></td>
-                        <td class='text ' data-title='action'><a href="./update?id=<?php echo $row['id'] ; ?>" class="btn btn primary">Update</a></td>
+                        <td class='text ' data-title='action'><button class="btn btn primary"><a href="./update.php?id=<?php echo $row['ID'] ; ?>">Update</a></button></td>
                     </tr>
                     <?php 
                     $cnt += 1;
