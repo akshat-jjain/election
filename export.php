@@ -2,10 +2,32 @@
 	$conn = mysqli_connect('localhost','','','database');
 
 // $fields = array('id','vidhanSabha', 'fullName', 'fhName', 'age', 'aadhar', 'boothNumber','voterNumber','address','city','district','caste','subcaste','mobileNumber','occupation','wardNumber','remark1','remark2','remark3','other'); 
-  
-$query = mysqli_query($conn,"SELECT * FROM registration"); 
+$type = array_pop($_GET);
+if ($type == "basic"){
+    $query = "";
+    $filters = array("vidhanSabha", "wardNumber", "nagarPalika", "boothNumber", "boothName", "religion", "name", "surname", "caste", "subcaste", "fhName", "gender", "age", "aadhar", "voterNumber", "city", "district", "mobileNumber", "occupation");
+    $q = $_GET['q'];
+    $query = implode(" = '$q' Or ",$filters);
+    $query .= "= '$q'";
+    $result = mysqli_query($conn,"Select * from `registration` where $query");
+}else if($type == "advanced" ){
+    $query = [];
+    foreach ($_GET as $key => $val){
+        if(!empty($val)){
+            $query[] = " $key = '$val' ";
+        }
+    }
+    if (!empty($query)){
+        $query = implode(" And ",$query);
+        $result = mysqli_query($conn,"Select * from `registration` where $query");
+    }else{
+        $result = mysqli_query($conn,"Select * from `registration`");
+    }
+}else{
+    $result = mysqli_query($conn,"SELECT * FROM registration"); 
+}
 $tasks = array();
-while( $rows = mysqli_fetch_assoc($query) ) {
+while( $rows = mysqli_fetch_assoc($result) ) {
 $tasks[] = $rows;
 }
 
